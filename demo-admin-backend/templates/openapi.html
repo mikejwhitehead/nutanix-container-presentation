@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Demo Admin App API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.19.0/swagger-ui.css" >
+    <!--<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />-->
+    <!--<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />-->
+  </head>
+
+  <body>
+    <div id="swagger-ui"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.19.0/swagger-ui-bundle.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.19.0/swagger-ui-standalone-preset.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/yamljs/0.3.0/yaml.min.js"></script>
+
+    <script>
+    window.onload = function() {
+
+      // Load the swagger YAML file into JSON
+      var spec = YAML.load("{{ url_for('static', filename='openapi.yaml') }}");
+
+      // Dynamically set the server url
+      spec.servers[0].url = location.protocol + "//" + location.hostname + (location.port ? ':' + location.port : '') + '/api';
+
+      // Build the Swagger UI
+      const ui = SwaggerUIBundle({
+        spec: spec,
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        defaultModelsExpandDepth: 0
+      });
+
+      window.ui = ui;
+    }
+  </script>
+  </body>
+</html>

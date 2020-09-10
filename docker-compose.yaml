@@ -1,0 +1,55 @@
+version: '3.2'
+
+networks:
+  demo-admin-app:
+    driver: bridge
+
+services:
+  demo-admin-app-db:
+    image: 'mongo:4.0'
+    networks:
+      - demo-admin-app
+    ports:
+      - '27017:27017'
+    hostname: demo-admin-app-db
+    container_name: demo-admin-app-db
+    volumes:
+      - 'demo-admin-app-db:/data/db'
+
+  demo-admin-app-backend:
+    depends_on:
+      - 'demo-admin-app-db'
+    build:
+      context: ./demo-admin-backend
+      dockerfile: Dockerfile
+    networks:
+      - demo-admin-app
+    ports:
+      - '5000:5000'
+    hostname: demo-admin-app-backend
+    container_name: demo-admin-app-backend
+    environment:
+      API_SERVER_DEBUG: "True"
+      DB_HOST: demo-admin-app-db
+      DB_NAME: demo-admin-app
+
+  demo-admin-app-frontend:
+    depends_on:
+      - demo-admin-app-backend
+    build:
+      context: ./demo-admin-frontend
+      dockerfile: Dockerfile
+    networks:
+      - demo-admin-app
+    ports:
+      - '80:80'
+    hostname: demo-admin-app-frontend
+    container_name: demo-admin-app-frontend
+    environment:
+      API_URL: "http://demo-admin-app-backend:5000/api"
+      API_SERVER_HOST: demo-admin-app-backend
+      API_SERVER_PORT: 5000
+
+volumes:
+  demo-admin-app-db:
+    driver: local

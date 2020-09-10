@@ -1,0 +1,43 @@
+# Archived requirements.txt files
+requirements.bak*
+
+# Python virtual environment
+venv/
+
+# PyCharm config file
+.idea/
+
+# Python files
+.python-version
+
+# Python compiled files
+__pycache__
+.pytest_cache/
+
+# test files
+samples
+samples/*
+
+# git
+.git*
+.github/
+
+# vscode files
+.vscode
+*.code-workspace
+
+# docker files
+docker-compose.yaml
+Dockerfile
+.dockerignore
+
+# Helm files
+charts/
+
+# Docs
+README.md
+
+
+
+
+
