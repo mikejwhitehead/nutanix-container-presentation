@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-admin-app
+    component: demo-admin-backend
+  name: demo-admin-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-admin-app
+      component: demo-admin-backend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo-admin-app
+        component: demo-admin-backend
+    spec:
+      containers:
+      - image: mikewhitehead/demo-admin-backend:v0.1.0
+        name: demo-admin-backend
+        imagePullPolicy: Always
+        resources: {}
+        env: 
+        - name: API_SERVER_HOST
+          value: "0.0.0.0"
+        - name: API_SERVER_PORT
+          value: "5000"
+        - name: DB_NAME
+          value: demo-admin-app
+        - name: DB_HOST
+          value: demo-admin-app-db
+        - name: DB_PORT
+          value: "27017"
+        ports:
+          - name: http
+            containerPort: 5000
+            protocol: TCP

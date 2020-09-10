@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-admin-backend
+  labels:
+    app: demo-admin-app
+    component: demo-admin-backend
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    app: demo-admin-app
+    component: demo-admin-backend

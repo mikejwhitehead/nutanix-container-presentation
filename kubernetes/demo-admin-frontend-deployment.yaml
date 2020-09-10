@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-admin-app
+    component: demo-admin-frontend
+  name: demo-admin-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-admin-app
+      component: demo-admin-frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo-admin-app
+        component: demo-admin-frontend
+    spec:
+      containers:
+      - name: demo-admin-frontend
+        image: mikewhitehead/demo-admin-frontend:v0.1.0
+        imagePullPolicy: Always
+        env:
+        - name: API_URL
+          value: "http://demo-admin-backend/api"
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        resources: {}
