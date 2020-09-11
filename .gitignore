@@ -85,3 +85,5 @@ requirements.bak
 .vscode
 *code-workspace
 .python-version
+
+run-code-server.sh

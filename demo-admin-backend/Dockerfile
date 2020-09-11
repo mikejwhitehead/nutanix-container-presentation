@@ -1,7 +1,7 @@
 FROM python:3.8.3
 
 # set default variables
-ENV DB_HOST localhost
+ENV DB_HOST demo-admin-app-db
 ENV DB_PORT 27017
 ENV API_SERVER_HOST 0.0.0.0
 ENV API_SERVER_PORT 5000

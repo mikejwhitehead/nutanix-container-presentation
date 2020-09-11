@@ -6,7 +6,7 @@ import os
 
 def getenv(key, default):
     value = os.getenv(key)
-    if len(value) is 0:
+    if len(value) == 0:
         return default
     return value
 
