@@ -1,5 +1,4 @@
 # Nutanix Containers and Why Presentation
-
 Here are the examples used in the **Containers and Why** meeting with the Nutanix enterprise SE team.
 
 Using these examples, we demonstrated:
@@ -13,22 +12,18 @@ Using these examples, we demonstrated:
 * [Deploy a containerized application to Kubernetes](kubernetes/README.md)
   
 ---
-
-## Tutorials
-
+# Tutorials
 1. [Build, Push and Run a python flask application with docker](demo-admin-backend/README.md)
 2. [Add a React frontend to the application and run multiple containers with docker-compose](docker-compose.md)
 3. [Deploy the application to Kubernetes](kubernetes/README.md)
-
 ---
 
-## Presentation
-
+# Presentation
 You can view the terminal presentation by following [presentation/README.md](presentation/README.md)
 
 ---
 
-## Awesome Tools
+# Awesome Tools
 We also discussed these handy tools and references
 
 ### **VS Code**
